@@ -95,11 +95,11 @@ def main():
         counter += 1
         if counter == 2:
             print("Counter reached 2")
-        else
+        else:
             pass  # syntax error: missing colon on else
 
     # Another function with missing colon
-    def bad_function(x, y)
+    def bad_function(x, y):
         if x > y:
             return x - y
         elif x < y:
