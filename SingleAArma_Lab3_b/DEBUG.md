@@ -4,6 +4,42 @@
 **Time Started:** 09:23pm
 **Time Ended:** 
 
+
+## Catch-Up Block — 2026-02-08 (local time: __:__)
+**Context:** Catching DEBUG log up to current state after pain/sleep disruption. Summarizing prior actions from terminal + GitHub GUI review.
+**Goal:** Record what happened, then resume active debugging cycles.
+
+### Summary of what happened (bullets)
+- [ ] Verified repo/branch state via GUI (commits + diffs).
+- [ ] Confirmed file locations; corrected wrong-directory confusion by cd’ing into repo root.
+- [ ] Moved/created README in correct folder; restored top-level README.
+- [ ] Added/updated `DEBUG.md` template; committed + pushed.
+- [ ] Verified last 3 commits using `git log --oneline --decorate -3`.
+- [ ] Identified primary offenders: `index.html` + `script.js` (largest error count); Python has remaining issues; shell likely last.
+
+### Evidence / Commands
+- `pwd`:
+- `ls -al`:
+- `git status`:
+- `git log --oneline --decorate -3`:
+- Notes from GitHub “Files changed” view: (+ added / − removed confirmed)
+
+
+### Pre-Repo Setup Friction (before clean Git state)
+**What happened:** Initial confusion occurred before the repo was recognized as a Git repository.
+
+- Started in a directory that was *not* the repo root → `fatal: not a git repository`
+- Resolved by navigating into the correct project folder:
+  - `cd SingleA_Armageddon_VersionB/SingleAArma_Lab3_b`
+- Confirmed correct branch and remote tracking after entering repo:
+  - `On branch lab3_fixes`
+  - `up to date with origin/lab3_fixes`
+
+**Lesson:** Always verify location first:
+- `pwd`
+- `ls`
+- `git status`
+
 ---
 
 ## Context
