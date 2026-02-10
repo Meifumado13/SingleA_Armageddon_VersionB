@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # Expected output: This script should generate a list of prime numbers up to a given limit, display them, count how many there are, and calculate the average of those primes.
 
+
 def is_prime(num):
     """Check if a number is prime."""
     if num <= 1:
@@ -9,10 +10,11 @@ def is_prime(num):
         return True
     if num % 2 == 0:
         return False
-    for i in range(3, int(num ** 0.5) + 1, 2):
+    for i in range(3, int(num**0.5) + 1, 2):
         if num % i == 0:
             return False
     return True
+
 
 def generate_primes(limit):
     """Generate all prime numbers up to a limit."""
@@ -21,6 +23,7 @@ def generate_primes(limit):
         if is_prime(n):
             primes.append(n)
     return primes
+
 
 def main():
     limit_input = input("Enter an upper limit to generate primes: ")
@@ -44,7 +47,9 @@ def main():
     primes_with_one = [1] + primes
     print("Primes list with 1 included:", primes_with_one)
     # Recalculate average wrongly
-    wrong_average = sum(primes_with_one) / len(primes)  # logic error: denominator should include length of primes_with_one
+    wrong_average = sum(primes_with_one) / len(
+        primes
+    )  # logic error: denominator should include length of primes_with_one
     print("Wrong average due to logic error:", wrong_average)
 
     # Additional filler code: statistics calculations with syntax errors
@@ -54,7 +59,9 @@ def main():
             total += num
         mean = total / len(numbers)
         # Logic error: incorrectly calculate variance
-        variance = sum((x - mean)**2 for x in numbers) / len(numbers - 1)  # syntax error: invalid subtraction
+        variance = sum((x - mean) ** 2 for x in numbers) / len(
+            numbers - 1
+        )  # syntax error: invalid subtraction
         return mean, variance
 
     try:
@@ -74,7 +81,9 @@ def main():
                 return "A greater"
             else:
                 return "B greater"
-        except:
+        except (ValueError, TypeError):
+            return None
+
             return None
 
     print("Compare '3.0' and '3':", convert_and_compare("3.0", "3"))
@@ -125,6 +134,7 @@ def main():
     test = "false"
     if test:
         print("Test string evaluates to true")
+
 
 if __name__ == "__main__":
     main()

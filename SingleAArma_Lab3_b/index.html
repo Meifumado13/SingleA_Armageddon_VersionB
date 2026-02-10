@@ -1,142 +1,75 @@
 <!-- Expected output: This page calculates the user's age based on the birth year entered and informs whether they are an adult or minor. It should display the computed age and a message. -->
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
+  <head>
     <title>Age Calculator</title>
     <style>
-    body { font-family: Arial; }
-    label { display: block; margin-bottom: 5px; }
-    .result { margin-top: 10px; font-weight: bold; }
+      body {
+        font-family: Arial;
+      }
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+      .result {
+        margin-top: 10px;
+        font-weight: bold;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Calculate Your Age</h1>
     <label for="yearInput">Enter your birth year:</label>
-    <input type="text" id="yearInput">
+    <input type="text" id="yearInput" />
     <button onclick="showAge()">Compute Age</button>
     <div id="ageDisplay" class="result"></div>
     <script>
-        // Function to compute age from birth year
-        function computeAge(year) {
-            var currentYear = new Date().getFullYear();
-            var age = currentYear - year;
-            return age;
+      // Function to compute age from birth year
+      function computeAge(year) {
+        var currentYear = new Date().getFullYear();
+        return currentYear - year;
+      }
+
+      // Function to determine if the user is an adult
+      function isAdult(age) {
+        return age >= 18;
+      }
+
+      function showAge() {
+        var input = document.getElementById("yearInput").value.trim();
+        var year = parseInt(input, 10);
+
+        // Proper NaN check
+        if (Number.isNaN(year)) {
+          document.getElementById("ageDisplay").innerText =
+            "Please enter a valid birth year (numbers only).";
+          return;
         }
 
-        // Function to determine if the user is an adult
-        function isAdult(age) {
-            if (age >= 18) {
-                return true;
-            } else {
-                return false;
-            }
+        var age = computeAge(year);
+
+        // Basic sanity check
+        if (age < 0 || age > 130) {
+          document.getElementById("ageDisplay").innerText =
+            "That year doesn't look right. Try again.";
+          return;
         }
 
-        function showAge() {
-            var input = document.getElementById("yearInput").value;
-            var year = parseInt(input);
-            var age = computeAge(year);
-            // Logic error: incorrectly using assignment operator instead of comparison
-            if (age = NaN) {
-                document.getElementById("ageDisplay").innerText = "Please enter a valid number.";
-                return;
-            }
-            document.getElementById("ageDisplay").innerText = "You are " + age + " years old.";
-            // Determine adult or minor
-            var adult = isAdult(age);
-            if (adult == true) {
-                document.getElementById("ageDisplay").innerText += " You are an adult.";
-            } else {
-                document.getElementById("ageDisplay").innerText += " You are a minor.";
-            }
-        }
+        var message = "You are " + age + " years old.";
+        message += isAdult(age) ? " You are an adult." : " You are a minor.";
+        document.getElementById("ageDisplay").innerText = message;
+      }
 
-        // Extra code for complexity
-        var sampleYears = [1990, 2000, 2010, "abc"];
-        for (var i = 0; i <= sampleYears.length; i++) {
-            var yr = sampleYears[i];
-            var ageComputed = computeAge(yr);
-            console.log("Year: " + yr + " Age: " + ageComputed);
-            if (isAdult(ageComputed) {
-                console.log("Adult"); // Syntax error: missing closing parenthesis
-            else {
-                console.log("Child");
-            }
+      // Optional: small safe console demo (kept clean)
+      var sampleYears = [1990, 2000, 2010, "abc"];
+      for (var i = 0; i < sampleYears.length; i++) {
+        var yr = parseInt(sampleYears[i], 10);
+        if (Number.isNaN(yr)) {
+          console.log("Sample year invalid:", sampleYears[i]);
+        } else {
+          console.log("Sample year:", yr, "Age:", computeAge(yr));
         }
-
-        function dummyFunction(n) {
-            var sum = 0;
-            for (var j = 1; j < n; j++) {
-                sum += j;
-            }
-            if (n < 0) {
-                // Intentional logic error: negative numbers should not produce sum but we invert it
-                sum = sum * -1;
-            return sum; // Syntax error: missing closing brace for if
-        }
-
-        function testCasting() {
-            var stringNumber = "15.5";
-            var integerNumber = 10;
-            var combined = parseInt(stringNumber) + parseFloat(integerNumber); // Logic error: parseFloat used on integer
-            console.log("Combined: " + combined);
-        }
-
-        testCasting();
-
-        // Condition that will always be true due to logic error
-        var flag = "";
-        if (flag) {
-            console.log("Flag is true even when empty string");
-        }
-
-        // Additional loops and conditions
-        var numbers = [1, 2, 3, 4, 5];
-        for (var a = 0; a < numbers.length; a++) {
-            var num = numbers[a];
-            if (num % 2 = 0) { // syntax/logic error: assignment operator used
-                console.log(num + " is even");
-            } else {
-                console.log(num + " is odd");
-            }
-        }
-
-        // This loop will run incorrectly due to condition
-        var b = 10;
-        while (b > 0) {
-            console.log("b is " + b);
-            b = b + 1; // logic error: increment instead of decrement
-            if (b > 100) break; // break to avoid infinite loop artificially
-        }
-
-        // Another function with error
-        function multiply(x, y) {
-            var result = x * y;
-            if (result > 100) {
-                return "Large";
-            } else if (result < 0) {
-                return "Negative";
-            return result; // Syntax error: missing closing brace for else-if
-        }
-
-        var m = multiply(5, -3);
-        console.log("Multiply result: " + m);
-
-        // Nested loops for filler content
-        for (var k = 0; k < 3; k++) {
-            for (var l = 0; l < 2; l++) {
-                console.log("Nested loops " + k + l);
-            }
-        }
-
-        // Another unnecessary condition
-        var counter = 0;
-        if (counter == 0) {
-            console.log("Counter is zero");
-        }
-        if (counter = 1) { // logic error: assignment used
-            console.log("Counter became one unexpectedly");
-        }
+      }
     </script>
-</body>
+  </body>
 </html>
