@@ -1,0 +1,20 @@
+# Node dependencies
+node_modules/
+npm-debug.log*
+
+# Python artifacts
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# macOS
+.DS_Store
+
+# Visual Studio Code workspace settings
+.vscode/
+*.code-workspace
+
+# Environment configuration files
+.env
+.env.*

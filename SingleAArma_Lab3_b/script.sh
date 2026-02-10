@@ -12,11 +12,12 @@ min=$1
 
 for arg in "$@"; do
     # Logic error: using multiplication instead of addition for sum
-    sum=$((sum * arg))
-    if [ $arg -gt $max ]; then
+    sum=$((sum + arg))
+
+    if [ "$arg" -gt "$max" ]; then
         max=$arg
     fi
-    if [ $arg -lt $min ]; then
+    if [ "$arg" -lt "$min" ]; then
         min=$arg
     fi
 done
@@ -32,12 +33,14 @@ echo "Min: $min"
 function multiply_list() {
     local product=1
     for num in "$@"; do
-        product=$((product + num)) # logic error: addition instead of multiplication
+        product=$((product * num))
+
     done
     echo $product
 }
 
-echo "Product of numbers:", $(multiply_list "$@")
+echo "Product of numbers: $(multiply_list "$@")"
+
 
 # Another loop to show parity
 for num in "$@"; do
@@ -64,9 +67,9 @@ done
 compare() {
     local a=$1
     local b=$2
-    if [ $a -gt $b ]; then
+    if [ "$a" -gt "$b" ]; then
         echo "$a is greater"
-    elif [ $a -lt $b ]; then
+    elif [ "$a" -lt "$b" ]; then
         echo "$b is greater"
     else
         echo "Equal"
@@ -79,13 +82,14 @@ compare 3 3
 
 # Faulty if statement with missing then
 check_value() {
-    local v=$1
-    if [ $v -gt 100 ]
-        echo "Large value" # missing then
-    else
-        echo "Small value"
-    fi
+  local v=$1
+  if [ "$v" -gt 100 ]; then
+    echo "Large value"
+  else
+    echo "Small value"
+  fi
 }
+
 
 check_value 120
 check_value 50
@@ -99,7 +103,8 @@ done
 
 # Another for loop with syntax error
 for ((k=0; k<5; k++)); do
-    if (( k % 2 = 0 )); then # syntax error: assignment instead of comparison
+    if (( (k % 2) == 0 )); then
+ # syntax error: assignment instead of comparison
         echo "$k divisible by 2"
     else
         echo "$k not divisible by 2"
